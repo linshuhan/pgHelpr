@@ -313,6 +313,26 @@ def get_run_mode() -> int:
         except Exception as e:
             print(f"输入错误: {e}")
 
+async def show_banner():
+    """显示程序横幅"""
+    banner = """
+    ╔══════════════════════════════════════════════╗
+    ║                                              ║
+    ║              🎊 第 四 季 🎊                 ║
+    ║                                              ║
+    ║          个人项目，仅供娱乐                 ║
+    ║        作者QQ  ：2248850736                 ║
+    ║                                              ║
+    ╚══════════════════════════════════════════════╝
+    """
+    
+    print("\n" + "🎯"*50)
+    # 逐行显示，产生动态效果
+    for line in banner.split('\n'):
+        print(line)
+        await asyncio.sleep(0.1)
+    print("🎯"*50 + "\n")
+
 async def process_single_account(account_config: AccountConfig, run_mode: int):
     """处理单个账号"""
     if not account_config.enabled:
@@ -455,6 +475,9 @@ async def handle_captcha(account: PgAccount, user_logger, operation: str) -> boo
 
 async def main():
     """主函数"""
+    # 显示程序横幅
+    await show_banner()
+    
     # 获取用户选择的运行模式
     run_mode = get_run_mode()
     
